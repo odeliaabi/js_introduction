@@ -17,7 +17,36 @@
     <div ng-init="users=['Marc','John','Lisa']">
 <ul>
 	<li ng-repeat="user in users">{{user|uppercase }}</li></br>
-	<li ng-repeat="user in users">{{user|lowercase }}</li>
+	
+	to filter on element of a tabn string or object=>
+	we use "filter" function</br>
+	{{users | filter:'a'}}
+    </br>
+	<li ng-repeat="user in users | filter:'M'">{{user|lowercase }}</li></br>
+</ul>
+    </div>
+
+    search system of users using filter on a tab:
+      <input type="text" ng-model="query"/>
+      <div ng-init="users=['Marc Aurel','John Smith','Anna Harendt','Albert Einstein','Pierre Curie','Marie Curie']">
+<ul>
+	
+	<li ng-repeat="user in users | filter:query">{{user|lowercase }}</li></br>
+</ul>
+    </div>
+   
+      <input type="text" ng-model="query"/>
+      <div ng-init="users=[{username:'Jean valjean ',autor:'victor hugo',date:1862},
+      {username:'Cosette',author:'victor hugo',date:1862},
+      {username:'Romeo ',author:'William shakespeare',date:1597},
+      {username:'Juliette',author:'William shakespeare',date:1597},
+      {username:'Cyrano de bergerac ',autor:'Edmond rostand ',date:1867}]"
+      >
+     
+
+<ul>
+	
+	<li ng-repeat="user in users | filter:query|order by:'-date'">{{user|lowercase }}</li></br>
 </ul>
     </div>
 
