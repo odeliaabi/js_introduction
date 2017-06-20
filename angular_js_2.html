@@ -17,14 +17,15 @@
     app.config(function($routeProvider){ 
       $routeProvider
       .when('/',{templateUrl:'partials/home.html'})
-      .when('/comments',{templateUrl:'partials/comments.html'})
+      .when('/comments/:id',{templateUrl:'partials/comments.html'})
       .otherwise({redirectTo:'/'});
   });
     
     app.controller('postsCtrl',function($scope){
       $scope.posts=
     [
-      {"name":"Albert Einstein",
+      {"id":1,
+        "name":"Albert Einstein",
        "content":"Relativity theory",
        "comments":
        [
@@ -36,7 +37,8 @@
         }
         ]
       },
-      {"name":"Curie Pierre and Marie",
+      {"id":2,
+        "name":"Curie Pierre and Marie",
        "content":"Radium discovery",
        "comments":  
         [
@@ -48,7 +50,8 @@
         }
         ]
       },
-      {"name":"Max Planck",
+      {"id":3,
+        "name":"Max Planck",
        "content":"Quanta's theory",
        "comments":
        [
@@ -60,7 +63,8 @@
        }
        ]
      },
-      {"name":"Maxwell",
+      {"id":4,
+        "name":"Maxwell",
        "content":"Equations of electromagnetism",
         "comments":
         [
@@ -72,7 +76,8 @@
         }
         ]
       },
-      {"name":"Benjamin Franklin",
+      {"id":5,
+        "name":"Benjamin Franklin",
        "content":"Declaration of human rights",
        "comments":
         [ 
