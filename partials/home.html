@@ -1,14 +1,20 @@
+
+<body>
 <div ng-controller="postsCtrl">
 <div ng-repeat="post in posts">
-<h1>{{post.name}}</h1>
+	<div id="article">
+		<center>
+<h2>{{post.name}}</h2>
 <p> {{post.content}} </p>
 	<p>
 	<a href="#!/comments/{{post.id}}">{{post.comments.length}} commentaires</a>
-   </p>
-<hr>
+   </p> </center>
 </div>
 
 </div>
+
+</div>
+</body>
 <!--
 <h1> Article</h1>	
 <p>blabla</p>

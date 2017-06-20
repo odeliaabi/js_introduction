@@ -4,9 +4,16 @@
 <head>
     
     <title>ANGULAR_scope and controller</title>
+    <link rel="stylesheet" href="./partials/introAJS.css" />
+    <link rel="stylesheet" href="./partials/home.css" />
 </head>
 
 <body ng-app="monApp">
+   <div id="bandeau">
+    <center>
+    <br><h1> COMM's application</h1><br>
+  </center>
+   </div>
 	 <div ng-view></div>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
   <script src="https://code.angularjs.org/1.6.4/angular-route.js"></script>
@@ -21,6 +28,8 @@
       .otherwise({redirectTo:'/'});
   });
     
+
+
     app.controller('postsCtrl',function($scope){
       $scope.posts=
     [
