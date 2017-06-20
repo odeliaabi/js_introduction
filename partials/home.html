@@ -1,4 +1,14 @@
-<h1>ArtiCle #1</h1>
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla dictum non lectus vitae consequat. Suspendisse potenti. Aliquam auctor vitae tortor id semper. </p>
-	<h2> Commentaires  </h2>
+<div ng-controller="postsCtrl">
+<div ng-repeat="post in posts">
+<h1>{{post.name}}</h1>
+<p> {{post.content}} </p>
+	<h2> {{post.comment.lenght}}</h2>
 	<a href="#!/comments">Voir les commentaires</a>
+</div>
+<hr>
+</div>
+<!--
+<h1> Article</h1>	
+<p>blabla</p>
+<h2> Comments</h2>
+<a href="#!/comments">Voir les commentaires</a>-->
