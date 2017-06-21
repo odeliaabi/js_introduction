@@ -31,9 +31,9 @@
     app.factory('postFactory',function(){
       //object factory wich include articles and two methods
       var factory={
-        posts:[
-
-      {"id":1,
+        posts:
+        [
+          {"id":1,
         "name":"Albert Einstein",
        "content":"Relativity theory",
        "comments":
@@ -45,8 +45,8 @@
         "content":"Et prima post Osdroenam quam, ut dictum est. "
         }
         ]
-      },
-      {"id":2,
+          },
+          {"id":2,
         "name":"Curie Pierre and Marie",
        "content":"Radium discovery",
        "comments":  
@@ -58,8 +58,8 @@
         "content":"Et interdum acciderat, ut siquid in penetrali secreto nullo citerioris vitae ministro ."
         }
         ]
-      },
-      {"id":3,
+          },
+          {"id":3,
         "name":"Max Planck",
        "content":"Quanta's theory",
        "comments":
@@ -71,8 +71,8 @@
         "content":"Alios autem dicere aiunt multo etiam inhumanius (quem locum breviter paulo ante perstrinxi) ."
        }
        ]
-      },
-      {"id":4,
+          },
+          {"id":4,
         "name":"Maxwell",
        "content":"Equations of electromagnetism",
         "comments":
@@ -84,8 +84,8 @@
          "content":"Batnae municipium in Anthemusia conditum Macedonum manu priscorum ab Euphrate flumine brevi ."
         }
         ]
-      },
-      {"id":5,
+          },
+          {"id":5,
         "name":"Benjamin Franklin",
        "content":"Declaration of human rights",
        "comments":
@@ -97,7 +97,7 @@
          "content":"ntellectum est enim mihi quidem in multis, et maxime in me ipso, sed paulo ante in omnibus."
         }
         ]
-      }
+          }
         ],
         //return differents articles
         getPosts:function(){
@@ -105,13 +105,20 @@
         },
         //take in paramater id of article to call
         getPost:function(id){
-          //test with id=0
-          return factory.posts[0];
-        }
+          //test with id=0 => dont work for other comments
+          //initialisation
+          var post={};
+          //browes comments
+          angular.forEach(factory.posts,function(value,key){
+            if(value.id==id){
+              post=value;
+            }
+          });
+          return post;
+        },
       }
       return factory;
-    }
-      )
+    })
     //the controller need the factory to pass information
     app.controller('postsCtrl',function($scope,postFactory){
 
@@ -120,30 +127,12 @@
 
     });
 
-    app.controller('comCtrl',function($scope){
-     
-      $scope.comments= [
-      {"username":"planck",
-        "city":"new york",
-        "email":"plank@gmail.com",
-        "content":"Et prima post Osdroenam quam, ut dictum est. "},
-      {"username":"Mileva Maritch",
-        "city":"Bern",
-        "email":"mileva@gmail.com",
-        "content":"Et interdum acciderat, ut siquid in penetrali secreto nullo citerioris vitae ministro ."},
-      {"username":"Albert Einstein",
-        "city":"Bern",
-        "email":"einstein@gmail.com",
-        "content":"Alios autem dicere aiunt multo etiam inhumanius (quem locum breviter paulo ante perstrinxi) ."},
-      {"username":"Tesla",
-         "city":"rome",
-         "email":"tesla@gmail.com",
-         "content":"Batnae municipium in Anthemusia conditum Macedonum manu priscorum ab Euphrate flumine brevi ."},
-      {"username":"Martin luther king",
-         "city":"new york",
-         "email":"MLK@gmail.com",
-         "content":"ntellectum est enim mihi quidem in multis, et maxime in me ipso, sed paulo ante in omnibus."}
-            ];
+    app.controller('comCtrl',function($scope,postFactory,$routeParams){
+      //$routeParam is an object allowing to retrieve the current set of route parameters.
+      //console.log($routeParams);
+      var post=postFactory.getPost($routeParams.id);
+      $scope.title= post.content;
+      $scope.comments= post.comments;
       
     });
   </script>

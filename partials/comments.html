@@ -5,10 +5,10 @@
       <option value="username">organize by name</option>
       <option value="content">organize by content</option>
   </select> 
-
+ 
   <div ng-controller="comCtrl">
     <div ng-repeat="comment in comments|filter:{content:query}|orderBy:order">
-      
+      <h2>{{title}}</h2>
       <p>
 
          <strong>{{comment.username}}</strong><br>
