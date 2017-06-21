@@ -28,11 +28,11 @@
       .otherwise({redirectTo:'/'});
   });
     
+    app.factory('postFactory',function(){
+      //object factory wich include articles and two methods
+      var factory={
+        posts:[
 
-
-    app.controller('postsCtrl',function($scope){
-      $scope.posts=
-    [
       {"id":1,
         "name":"Albert Einstein",
        "content":"Relativity theory",
@@ -71,7 +71,7 @@
         "content":"Alios autem dicere aiunt multo etiam inhumanius (quem locum breviter paulo ante perstrinxi) ."
        }
        ]
-     },
+      },
       {"id":4,
         "name":"Maxwell",
        "content":"Equations of electromagnetism",
@@ -98,7 +98,25 @@
         }
         ]
       }
-    ];
+        ],
+        //return differents articles
+        getPosts:function(){
+          return factory.posts;
+        },
+        //take in paramater id of article to call
+        getPost:function(id){
+          //test with id=0
+          return factory.posts[0];
+        }
+      }
+      return factory;
+    }
+      )
+    //the controller need the factory to pass information
+    app.controller('postsCtrl',function($scope,postFactory){
+
+      $scope.posts=postFactory.getPosts();
+    
 
     });
 
